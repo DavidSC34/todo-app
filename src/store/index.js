@@ -9,7 +9,10 @@ export default new Vuex.Store({
             { id: 1, title: 'Wake Up', done: false },
             { id: 2, title: 'Get bananas', done: false },
             { id: 3, title: 'Eat bananas', done: false },
-        ]
+        ],
+        snackbar:{
+            show:true
+        }
     },
     mutations: {
         addTask(state, newTaskTitle) {

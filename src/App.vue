@@ -81,11 +81,13 @@
     <v-main>
      <!-- If using vue-router -->
       <router-view></router-view>
+      <snackbar/>
     </v-main>
   </v-app>
 </template>
 
 <script>
+import Snackbar from './components/Shared/Snackbar.vue'
   export default {
     data: () => (
       { 
@@ -96,5 +98,8 @@
           { title: 'About', icon: 'mdi-help-box',to:'/about' },
         ],
       }),
+      components:{
+        'snackbar':Snackbar
+      }
   }
 </script>

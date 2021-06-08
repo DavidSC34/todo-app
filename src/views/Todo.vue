@@ -4,41 +4,25 @@
       <list-tasks
         v-if="$store.state.tasks.length"
       />
-      <div
-      v-else
-      class="no-tasks"
-      >
-            <v-icon
-              size="100"
-              color="primary"
-             >
-             mdi-check
-            </v-icon>
-            <div class="text-h5 primary--text">No tasks</div>
-          
-      </div>
+      <no-tasks
+       v-else
+      />
+     
   </div>
 </template>
 
 <script>
 import FieldAddTask from "../components/Todo/FieldAddTask";
 import ListTasksVue from '../components/Todo/ListTasks.vue';
+import NoTasks from '../components/Todo/NoTasks.vue';
 
   export default {
     name: 'Todo',   
     components:{
       'field-add-task':FieldAddTask,
-      'list-tasks':ListTasksVue
+      'list-tasks':ListTasksVue,
+      'no-tasks':NoTasks,
 
     }
   }
 </script>
- <style lang="scss">
- .no-tasks{
-   position:absolute;
-   left:50%;
-   top:50%;
-   transform: translate(-50%,50%);
-   opacity: 0.5;
-}
- </style>
