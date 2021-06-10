@@ -32,6 +32,10 @@ export default new Vuex.Store({
         deleteTask(state, id) {
             state.tasks = state.tasks.filter(task => task.id !== id);
         },
+        updateTaskTitle(state, payload){
+            let task = state.tasks.filter(task => task.id === payload.id)[0];
+               task.title = payload.title;
+        },
         showSnackbar(state, text) {
             //Para esconder el mensaje y mostrar otro
             let timeout = 0;
@@ -55,10 +59,15 @@ export default new Vuex.Store({
             commit('showSnackbar', 'Task added! ')
 
         },
+        
         deleteTask({ commit }, id) {
             commit('deleteTask', id);
             commit('showSnackbar', 'Task deleted!');
-        }
+        },
+        updateTaskTitle({commit},payload){
+            commit('updateTaskTitle',payload);
+            commit('showSnackbar', 'Task updated!');
+        },
     },
     modules: {}
 })
