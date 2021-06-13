@@ -6,9 +6,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         tasks: [
-            { id: 1, title: 'Wake Up', done: false,dueDate:'2020-10-16' },
-            { id: 2, title: 'Get bananas', done: false,dueDate:'2020-10-17' },
-            { id: 3, title: 'Eat bananas', done: false ,dueDate:null},
+            { id: 1, title: 'Wake Up', done: false, dueDate: '2020-10-16' },
+            { id: 2, title: 'Get bananas', done: false, dueDate: '2020-10-17' },
+            { id: 3, title: 'Eat bananas', done: false, dueDate: null },
         ],
         snackbar: {
             show: false,
@@ -21,7 +21,7 @@ export default new Vuex.Store({
                 id: Date.now(),
                 title: newTaskTitle,
                 done: false,
-                dueDate:null
+                dueDate: null
             };
             state.tasks.push(newTask);
 
@@ -33,9 +33,13 @@ export default new Vuex.Store({
         deleteTask(state, id) {
             state.tasks = state.tasks.filter(task => task.id !== id);
         },
-        updateTaskTitle(state, payload){
+        updateTaskTitle(state, payload) {
             let task = state.tasks.filter(task => task.id === payload.id)[0];
-               task.title = payload.title;
+            task.title = payload.title;
+        },
+        updateDueDate(state, payload) {
+            let task = state.tasks.filter(task => task.id === payload.id)[0];
+            task.dueDate = payload.dueDate;
         },
         showSnackbar(state, text) {
             //Para esconder el mensaje y mostrar otro
@@ -60,14 +64,18 @@ export default new Vuex.Store({
             commit('showSnackbar', 'Task added! ')
 
         },
-        
+
         deleteTask({ commit }, id) {
             commit('deleteTask', id);
             commit('showSnackbar', 'Task deleted!');
         },
-        updateTaskTitle({commit},payload){
-            commit('updateTaskTitle',payload);
+        updateTaskTitle({ commit }, payload) {
+            commit('updateTaskTitle', payload);
             commit('showSnackbar', 'Task updated!');
+        },
+        updateTaskDueDate({ commit }, payload) {
+            commit('updateDueDate', payload);
+            commit('showSnackbar', 'Due Date updated!');
         },
     },
     modules: {}

@@ -37,8 +37,14 @@
 <script>
 
 import TaskMenu from './TaskMenu.vue'
+import {format} from 'date-fns'
 export default {
- props:['task'], 
+ props:['task'],
+ filters:{
+   niceDate(value){
+      return format(new Date(value), 'MMMM d, yyyy');
+   }
+ }, 
  components:{
    
    'task-menu':TaskMenu
